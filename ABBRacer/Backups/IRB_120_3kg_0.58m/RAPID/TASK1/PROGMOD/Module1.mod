@@ -1,6 +1,6 @@
 MODULE Module1
     CONST intnum height := 25;
-    CONST intnum mountainHeight := 55;
+    CONST intnum mountainHeight := 65;
     CONST intnum resetHeight := 85;
     CONST robtarget Target_10:=[[400,-365,height],[0,0.976296007,-0.216439614,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
 	CONST robtarget Target_11:=[[390,-375,height],[0,-0.130526192,0.991444861,0],[-1,0,-1,0],[9E+09,9E+09,9E+09,9E+09,9E+09,9E+09]];
@@ -62,23 +62,25 @@ MODULE Module1
 	    MoveL Target_230,snelheid,z50,tool0\WObj:=wobj0;
 	ENDPROC
 	PROC ResetPath()
-	    MoveL Target_260,v500,z50,tool0\WObj:=wobj0;
-	    MoveL Target_270,v500,z50,tool0\WObj:=wobj0;
-        MoveL Target_280,v500,z50,tool0\WObj:=wobj0;
-        MoveJ Target_281,v100,z50,tool0\WObj:=wobj0;
-        MoveJ Target_290,v500,z50,tool0\WObj:=wobj0;
+	    MoveJ Target_260,v2000,z50,tool0\WObj:=wobj0;
+	    MoveL Target_270,v2000,z50,tool0\WObj:=wobj0;
+        MoveL Target_280,v2000,z50,tool0\WObj:=wobj0;
+        MoveJ Target_281,v1000,z50,tool0\WObj:=wobj0;
+        MoveJ Target_290,v2000,z50,tool0\WObj:=wobj0;
 	ENDPROC
 	PROC main()
         VAR num antwoord;
-        TPReadFK antwoord, "hoe snel wil je rijden?", "langzaam", "normaal", "snel", stEmpty, stEmpty;
+        TPReadFK antwoord, "hoe snel wil je rijden?", "langzaam", "normaal", "snel", "Reset", stEmpty;
         IF antwoord = 1 THEN
-            MainPath v10;
+            MainPath v1000;
             ResetPath;
         ELSEIF antwoord = 2 THEN
-            MainPath v50;  
+            MainPath v1500;  
             ResetPath;
         ELSEIF antwoord = 3 THEN
-            MainPath v100;
+            MainPath v2500;
+            ResetPath;
+        ELSEIF antwoord = 4 THEN
             ResetPath;
         ENDIF
         main;
